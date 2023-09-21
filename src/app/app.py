@@ -4,6 +4,7 @@ from datetime import date
 from utils.utils import override_app_padding
 from components.app_header import app_header
 from components.new_pred_form import new_pred_form
+from components.sidebar import sidebar
 
 
 # Apply the function to override default padding
@@ -17,3 +18,6 @@ view_trend_button = app_header()
 
 # Implement the prediction form
 new_pred_form()
+
+# Implement the sidebar
+sidebar()
