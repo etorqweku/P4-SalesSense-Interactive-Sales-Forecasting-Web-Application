@@ -8,6 +8,8 @@ def override_app_padding():
     <style>
         .block-container {
              padding-top: 1rem;
+             padding-bottom: 2rem;
+             max-height: 100vh;
         }   
     </style>
     """,

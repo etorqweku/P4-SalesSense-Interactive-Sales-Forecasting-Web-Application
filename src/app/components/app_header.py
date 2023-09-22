@@ -3,7 +3,7 @@ import streamlit as st
 
 def app_header():
     # Split the screen into two columns with a ratio of 3:1
-    header_col_1, header_col_2 = st.columns([3, 1])
+    header_col_1, header_col_2 = st.columns([5, 1])
 
     # Create the first column for the title
     with header_col_1:
