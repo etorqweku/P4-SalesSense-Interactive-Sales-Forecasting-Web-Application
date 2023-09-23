@@ -1,4 +1,5 @@
 import streamlit as st
+from utils.utils import data_preprocessor
 
 
 family_options = [
@@ -94,5 +95,10 @@ def new_pred_form():
 
             # Create a form submit button with a primary style
             st.form_submit_button(
-                label="Submit", use_container_width=True, type="primary"
+                label="Submit",
+                use_container_width=True,
+                type="primary",
+                on_click=lambda: data_preprocessor(
+                    family, day_of_week, current_date, onpromotion, lag_1, rolling_mean
+                ),
             )

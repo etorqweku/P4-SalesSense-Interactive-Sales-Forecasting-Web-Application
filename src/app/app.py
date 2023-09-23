@@ -7,6 +7,9 @@ from components.new_pred_form import new_pred_form
 from components.sidebar import sidebar
 
 
+# Set page title and layout
+st.set_page_config(page_title=" SalesSense Prediction", layout="wide")
+
 # Apply the function to override default padding
 override_app_padding()
 
@@ -31,7 +34,9 @@ else:
 
     st.bar_chart({"data": [1, 5, 2, 6, 2, 1]})
 
-    st.button("Make a Prediction", on_click=callback_func(), use_container_width=True)
+    st.button(
+        "Make a Prediction", on_click=lambda: callback_func(), use_container_width=True
+    )
 
 # st.markdown(
 #     "<h2 style='text-align: center; margin-bottom: -3.125rem'>Predicted Sales</h2>",

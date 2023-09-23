@@ -15,3 +15,14 @@ def override_app_padding():
     """,
         unsafe_allow_html=True,
     )
+
+
+def data_preprocessor(
+    family: str,
+    day_of_week: int,
+    current_date,
+    onpromotion: int,
+    lag_1: int,
+    rolling_mean: int,
+):
+    print(family, day_of_week, current_date, onpromotion, lag_1, rolling_mean)
