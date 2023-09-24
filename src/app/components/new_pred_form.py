@@ -1,52 +1,13 @@
 import streamlit as st
-from utils.utils import data_preprocessor
+import pandas as pd
+import joblib
 
+# from utils.utils import data_preprocessor
+from utils.data_preprocessor import data_preprocessor
+from utils.utils import static_data
 
-family_options = [
-    "AUTOMOTIVE",
-    "BABY CARE",
-    "BEAUTY",
-    "BEVERAGES",
-    "BOOKS",
-    "BREAD/BAKERY",
-    "CELEBRATION",
-    "CLEANING",
-    "DAIRY",
-    "DELI",
-    "EGGS",
-    "FROZEN FOODS",
-    "GROCERY I",
-    "GROCERY II",
-    "HARDWARE",
-    "HOME AND KITCHEN I",
-    "HOME AND KITCHEN II",
-    "HOME APPLIANCES",
-    "HOME CARE",
-    "LADIESWEAR",
-    "LAWN AND GARDEN",
-    "LINGERIE",
-    "LIQUOR,WINE,BEER",
-    "MAGAZINES",
-    "MEATS",
-    "PERSONAL CARE",
-    "PET SUPPLIES",
-    "PLAYERS AND ELECTRONICS",
-    "POULTRY",
-    "PREPARED FOODS",
-    "PRODUCE",
-    "SCHOOL AND OFFICE SUPPLIES",
-    "SEAFOOD",
-]
-
-day_of_week_options = {
-    1: "Monday",
-    2: "Tuesday",
-    3: "Wednesday",
-    4: "Thursday",
-    5: "Friday",
-    6: "Saturday",
-    7: "Sunday",
-}
+preprocessor = joblib.load("/model/preprocessor.joblib")
+model = joblib.load("/model/xgb_model.joblib")
 
 
 def new_pred_form():
@@ -56,7 +17,7 @@ def new_pred_form():
     # Create a container to organize the form elements
     with st.container():
         # Create a form for user input
-        with st.form("sales_prediction_form"):
+        with st.form(key="sales_prediction_form", clear_on_submit=True):
             # Split the form into two columns
             form_col_1, form_col_2 = st.columns(2)
 
@@ -65,15 +26,15 @@ def new_pred_form():
                 # Create a dropdown for selecting the family of the store
                 family = st.selectbox(
                     label="Please Select the Family of the Store",
-                    options=family_options,
+                    options=static_data["family_options"],
                 )
 
                 # Create a dropdown for selecting the day of the week
                 day_of_week = st.selectbox(
                     label="Select day of the week",
-                    options=list(day_of_week_options.keys()),
-                    format_func=lambda x: day_of_week_options[
-                        list(day_of_week_options.keys()).index(x) + 1
+                    options=list(static_data["day_of_week_options"].keys()),
+                    format_func=lambda x: static_data["day_of_week_options"][
+                        list(static_data["day_of_week_options"].keys()).index(x) + 1
                     ],
                 )
 
@@ -98,7 +59,17 @@ def new_pred_form():
                 label="Submit",
                 use_container_width=True,
                 type="primary",
-                on_click=lambda: data_preprocessor(
-                    family, day_of_week, current_date, onpromotion, lag_1, rolling_mean
-                ),
             )
+
+            # Create payload to send the data
+            payload = {
+                "date": current_date,
+                "family": family,
+                "onpromotion": onpromotion,
+                "day_of_week": day_of_week,
+                "lag_1": lag_1,
+                "rolling_mean": rolling_mean,
+            }
+
+            # Display the DataFrame
+            st.write(data_preprocessor(payload=payload))
