@@ -1,5 +1,6 @@
 import streamlit as st
 
+# Import the component to render predicted sales and some static data
 from components.render_predicted_sale import render_predicted_sale
 from utils.utils import static_data
 
@@ -21,9 +22,9 @@ def sidebar():
 
         # Expandable section for Sales Predictions
         with st.expander("SALES PREDICTIONS"):
-            # Render predicted sale for each of the top 3 predictions
+            # Render predicted sale for each of the predictions
             for i in range(3):
-                render_predicted_sale()
+                render_predicted_sale()  # Use a component to render predictions
 
         # Add an empty Markdown element to create space
         st.markdown(f"{'<br>'*2}", unsafe_allow_html=True)
@@ -34,4 +35,3 @@ def sidebar():
             st.write(
                 "SalesSense is an intuitive web app powered by cutting-edge machine learning models that provides real-time sales forecasts, helping businesses optimize inventory, boost profits, and make data-driven decisions effortlessly"
             )
-        st.write(st.session_state.data_df)
