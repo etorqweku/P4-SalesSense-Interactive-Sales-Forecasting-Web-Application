@@ -16,9 +16,9 @@ override_app_padding()
 # Define custom color palette
 custom_color_palette = ["#835AF1", "#37AA9C", "#B8F7D4", "#94F3E4"]
 
-# Check if 'data_df' exists in session state; if not, create an empty DataFrame
-if "data_df" not in st.session_state:
-    st.session_state.data_df = pd.DataFrame(columns=["Date", "Sale"])
+# Check if 'prediction_df' exists in session state; if not, create an empty DataFrame
+if "prediction_df" not in st.session_state:
+    st.session_state.prediction_df = pd.DataFrame(columns=["Date", "Sale"])
 
 # Implement the app header and get the 'view_trend_button' status
 view_trend_button = app_header()
@@ -37,7 +37,7 @@ else:
 
     # Display sales trend chart
     st.subheader("Sales Trend")
-    st.line_chart(st.session_state.data_df, x="Date", y="Sale")
+    st.line_chart(st.session_state["prediction_df"], x="Date", y="Sale")
 
     # Add a button to reset 'view_trend_button' to False
     st.button(

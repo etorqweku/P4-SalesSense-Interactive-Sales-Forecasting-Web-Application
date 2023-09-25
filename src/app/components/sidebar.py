@@ -23,8 +23,10 @@ def sidebar():
         # Expandable section for Sales Predictions
         with st.expander("SALES PREDICTIONS"):
             # Render predicted sale for each of the predictions
-            for i in range(3):
-                render_predicted_sale()  # Use a component to render predictions
+            for _, row in st.session_state["prediction_df"].iterrows():
+                render_predicted_sale(
+                    forecast_date=row["Date"], forecast_sale=row["Sale"]
+                )  # Use a component to render predictions
 
         # Add an empty Markdown element to create space
         st.markdown(f"{'<br>'*2}", unsafe_allow_html=True)

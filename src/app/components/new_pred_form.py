@@ -24,6 +24,7 @@ def new_pred_form():
                 family = st.selectbox(
                     label="Please Select the Family of the Store",
                     options=static_data["family_options"],
+                    help="Select the family of the store",
                 )
 
                 # Create a dropdown for selecting the day of the week
@@ -33,23 +34,42 @@ def new_pred_form():
                     format_func=lambda x: static_data["day_of_week_options"][
                         list(static_data["day_of_week_options"].keys()).index(x) + 1
                     ],
+                    help="Select the forecast day",
                 )
 
                 # Create a date input field for choosing the forecast date
-                current_date = st.date_input(label="Choose the forecast date")
+                current_date = st.date_input(
+                    label="Choose the forecast date", help="Choose the forecast date"
+                )
 
             # Form column 2
             with form_col_2:
                 # Create a numeric input field for the number of items on promotion
                 onpromotion = st.number_input(
-                    label="Enter the number of items on promotion", min_value=0
+                    label="Enter the number of items on promotion",
+                    min_value=0,
+                    help="Enter the number of items on promotion",
                 )
 
                 # Create a numeric input field for entering previous sales
-                lag_1 = st.number_input(label="Enter previous sales", min_value=0)
+                lag_1 = st.number_input(
+                    label="Enter previous sales",
+                    help="Enter the previous sales value or 0",
+                )
 
                 # Create a numeric input field for entering rolling mean
-                rolling_mean = st.number_input(label="Enter rolling mean", min_value=0)
+                rolling_mean = st.number_input(
+                    label="Enter rolling mean",
+                    min_value=0,
+                    help="Enter the rolling mean value or 0",
+                )
+
+            # Create a form submit button with a primary style
+            is_form_submitted = st.form_submit_button(
+                label="Submit",
+                use_container_width=True,
+                type="primary",
+            )
 
             # Create payload to send the data
             payload = {
@@ -61,13 +81,6 @@ def new_pred_form():
                 "rolling_mean": rolling_mean,
             }
 
-            # Create a form submit button with a primary style
-            is_form_submitted = st.form_submit_button(
-                label="Submit",
-                use_container_width=True,
-                type="primary",
-            )
-
             if is_form_submitted:
                 # Calculate the sale
                 forecast_sale = data_preprocessor(payload=payload)
@@ -77,8 +90,9 @@ def new_pred_form():
                     {"Date": [current_date], "Sale": [forecast_sale]}
                 )
 
-                st.session_state.data_df = pd.concat(
-                    [st.session_state.data_df, new_row], ignore_index=True
+                # Update the prediction df and add a new prediction
+                st.session_state.prediction_df = pd.concat(
+                    [st.session_state.prediction_df, new_row], ignore_index=True
                 )
 
                 # Display the Prediction
