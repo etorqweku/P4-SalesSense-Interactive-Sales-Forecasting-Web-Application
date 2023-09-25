@@ -1,43 +1,7 @@
 import streamlit as st
 
 from components.render_predicted_sale import render_predicted_sale
-
-
-family_options = [
-    "AUTOMOTIVE",
-    "BABY CARE",
-    "BEAUTY",
-    "BEVERAGES",
-    "BOOKS",
-    "BREAD/BAKERY",
-    "CELEBRATION",
-    "CLEANING",
-    "DAIRY",
-    "DELI",
-    "EGGS",
-    "FROZEN FOODS",
-    "GROCERY I",
-    "GROCERY II",
-    "HARDWARE",
-    "HOME AND KITCHEN I",
-    "HOME AND KITCHEN II",
-    "HOME APPLIANCES",
-    "HOME CARE",
-    "LADIESWEAR",
-    "LAWN AND GARDEN",
-    "LINGERIE",
-    "LIQUOR,WINE,BEER",
-    "MAGAZINES",
-    "MEATS",
-    "PERSONAL CARE",
-    "PET SUPPLIES",
-    "PLAYERS AND ELECTRONICS",
-    "POULTRY",
-    "PREPARED FOODS",
-    "PRODUCE",
-    "SCHOOL AND OFFICE SUPPLIES",
-    "SEAFOOD",
-]
+from utils.utils import static_data
 
 
 # Define the sidebar component
@@ -47,7 +11,7 @@ def sidebar():
         # Expandable section for Store Family
         with st.expander("STORE FAMILY"):
             # Iterate over family options and display them with custom styling
-            for family in family_options:
+            for family in static_data["family_options"]:
                 st.markdown(
                     f"""
                     <div style='background-color: #835AF1; padding: .5rem 1rem; border-radius: .5rem; color: white; margin-bottom: .5rem'>{family}</div>
@@ -70,3 +34,4 @@ def sidebar():
             st.write(
                 "SalesSense is an intuitive web app powered by cutting-edge machine learning models that provides real-time sales forecasts, helping businesses optimize inventory, boost profits, and make data-driven decisions effortlessly"
             )
+        st.write(st.session_state.data_df)

@@ -1,5 +1,6 @@
 import joblib
 import pandas as pd
+import numpy as np
 
 preprocessor = joblib.load("/model/preprocessor.joblib")
 model = joblib.load("/model/xgb_model.joblib")
@@ -16,6 +17,6 @@ def data_preprocessor(payload: dict):
 
     scaled_value = model.predict(preprocessor.transform(payload_df))
 
-    # Unscaled value approximation
+    # Unscaled value approximation to 3 decimal place
     original_value = scaled_value * (X_max - X_min) + X_min
-    return original_value
+    return np.round(float(original_value[0]), 3)

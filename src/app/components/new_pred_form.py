@@ -1,18 +1,15 @@
 import streamlit as st
 import pandas as pd
-import joblib
 
 # from utils.utils import data_preprocessor
 from utils.data_preprocessor import data_preprocessor
 from utils.utils import static_data
-
-preprocessor = joblib.load("/model/preprocessor.joblib")
-model = joblib.load("/model/xgb_model.joblib")
+from components.render_predicted_sale import render_predicted_sale
 
 
 def new_pred_form():
     # Display a subheader for making a new prediction
-    st.subheader("Make a New Prediction")
+    st.subheader("New Prediction")
 
     # Create a container to organize the form elements
     with st.container():
@@ -54,13 +51,6 @@ def new_pred_form():
                 # Create a numeric input field for entering rolling mean
                 rolling_mean = st.number_input(label="Enter rolling mean", min_value=0)
 
-            # Create a form submit button with a primary style
-            st.form_submit_button(
-                label="Submit",
-                use_container_width=True,
-                type="primary",
-            )
-
             # Create payload to send the data
             payload = {
                 "date": current_date,
@@ -71,5 +61,28 @@ def new_pred_form():
                 "rolling_mean": rolling_mean,
             }
 
-            # Display the DataFrame
-            st.write(data_preprocessor(payload=payload))
+            # Create a form submit button with a primary style
+            is_form_submitted = st.form_submit_button(
+                label="Submit",
+                use_container_width=True,
+                type="primary",
+            )
+
+            if is_form_submitted:
+                # Calculate the sale
+                forecast_sale = data_preprocessor(payload=payload)
+
+                # Create a new DataFrame with the prediction data
+                new_row = pd.DataFrame(
+                    {"Date": [current_date], "Sale": [forecast_sale]}
+                )
+
+                st.session_state.data_df = pd.concat(
+                    [st.session_state.data_df, new_row], ignore_index=True
+                )
+
+                # Display the Prediction
+                render_predicted_sale(
+                    forecast_date=current_date,
+                    forecast_sale=forecast_sale,
+                )
