@@ -54,13 +54,5 @@ static_data = {
         "SCHOOL AND OFFICE SUPPLIES",
         "SEAFOOD",
     ],
-    "day_of_week_options": {
-        1: "Monday",
-        2: "Tuesday",
-        3: "Wednesday",
-        4: "Thursday",
-        5: "Friday",
-        6: "Saturday",
-        7: "Sunday",
-    },
+    "store_type_options": ["A", "B", "C", "D", "E"],
 }

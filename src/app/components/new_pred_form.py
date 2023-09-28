@@ -27,14 +27,11 @@ def new_pred_form():
                     help="Select the family of the store",
                 )
 
-                # Create a dropdown for selecting the day of the week
-                day_of_week = st.selectbox(
-                    label="Select day of the week",
-                    options=list(static_data["day_of_week_options"].keys()),
-                    format_func=lambda x: static_data["day_of_week_options"][
-                        list(static_data["day_of_week_options"].keys()).index(x) + 1
-                    ],
-                    help="Select the forecast day",
+                # Create a dropdown for selecting the store type
+                store_type = st.selectbox(
+                    label="Select the store type",
+                    options=static_data["store_type_options"],
+                    help="Select the store type",
                 )
 
                 # Create a date input field for choosing the forecast date
@@ -76,13 +73,14 @@ def new_pred_form():
                 "date": current_date,
                 "family": family,
                 "onpromotion": onpromotion,
-                "day_of_week": day_of_week,
+                "day_of_week": current_date.weekday()
+                + 1,  # Compute day of the week (1 = Monday; 7 = Sunday)
                 "lag_1": lag_1,
                 "rolling_mean": rolling_mean,
             }
 
             if is_form_submitted:
-                # Calculate the sale
+                # Calculate the sales
                 forecast_sale = data_preprocessor(payload=payload)
 
                 # Create a new DataFrame with the prediction data

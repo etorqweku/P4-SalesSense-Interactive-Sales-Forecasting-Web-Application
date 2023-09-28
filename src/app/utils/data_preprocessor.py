@@ -6,6 +6,9 @@ import numpy as np
 preprocessor = joblib.load("/model/preprocessor.joblib")
 model = joblib.load("/model/xgb_model.joblib")
 
+# load the aggregated train set
+aggregated_train = pd.read_csv("src/notebook/data/aggregated_data.csv")
+
 
 # Define a function to preprocess and predict sales
 def data_preprocessor(payload: dict):
@@ -13,8 +16,8 @@ def data_preprocessor(payload: dict):
     payload_df = pd.DataFrame(payload, index=[0])
 
     # Define the minimum and maximum values for scaling
-    X_min = 0.00
-    X_max = 952765.716
+    X_min = np.min(aggregated_train["sales"])
+    X_max = np.max(aggregated_train["sales"])
 
     # Transform the input data using the preprocessor and make predictions
     scaled_value = model.predict(preprocessor.transform(payload_df))
@@ -23,4 +26,4 @@ def data_preprocessor(payload: dict):
     original_value = scaled_value * (X_max - X_min) + X_min
 
     # Round the result to 3 decimal places
-    return np.round(float(original_value[0]), 3)
+    return np.round(float(original_value[0]), 2)
