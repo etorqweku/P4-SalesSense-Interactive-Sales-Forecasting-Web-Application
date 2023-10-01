@@ -25,7 +25,7 @@ def sidebar():
             # Render predicted sale for each of the predictions
             for _, row in st.session_state["prediction_df"].iterrows():
                 render_predicted_sale(
-                    forecast_date=row["Date"], forecast_sale=row["Sale"]
+                    forecast_date=row["Date"], forecast_sale=row["Sales"]
                 )  # Use a component to render predictions
 
         # Add an empty Markdown element to create space

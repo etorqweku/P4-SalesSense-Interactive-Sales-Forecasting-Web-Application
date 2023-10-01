@@ -85,7 +85,11 @@ def new_pred_form():
 
                 # Create a new DataFrame with the prediction data
                 new_row = pd.DataFrame(
-                    {"Date": [current_date], "Sale": [forecast_sale]}
+                    {
+                        "Date": [current_date],
+                        "Sales": [forecast_sale],
+                        "Store_Type": [store_type],
+                    }
                 )
 
                 # Update the prediction df and add a new prediction
@@ -97,4 +101,5 @@ def new_pred_form():
                 render_predicted_sale(
                     forecast_date=current_date,
                     forecast_sale=forecast_sale,
+                    store_type=store_type,
                 )

@@ -18,7 +18,9 @@ custom_color_palette = ["#835AF1", "#37AA9C", "#B8F7D4", "#94F3E4"]
 
 # Check if 'prediction_df' exists in session state; if not, create an empty DataFrame
 if "prediction_df" not in st.session_state:
-    st.session_state.prediction_df = pd.DataFrame(columns=["Date", "Sale"])
+    st.session_state.prediction_df = pd.DataFrame(
+        columns=["Date", "Sales", "Store_Type"]
+    )
 
 # Implement the app header and get the 'view_trend_button' status
 view_trend_button = app_header()
@@ -37,7 +39,14 @@ else:
 
     # Display sales trend chart
     st.subheader("Sales Trend")
-    st.line_chart(st.session_state["prediction_df"], x="Date", y="Sale")
+
+    # Display the graph only if there is data
+    if st.session_state["prediction_df"].shape[0] > 0:
+        st.line_chart(
+            st.session_state["prediction_df"], x="Date", y="Sales", color="Store_Type"
+        )
+    else:
+        st.write("No Data to Plot. Please make a prediction")
 
     # Add a button to reset 'view_trend_button' to False
     st.button(
