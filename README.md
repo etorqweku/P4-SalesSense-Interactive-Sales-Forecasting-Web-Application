@@ -39,8 +39,8 @@ The SalesSense app leverages machine learning models to provide real-time sales 
   | ![initial_screen](https://github.com/snyamson/P4-SalesSense-Interactive-Sales-Forecasting-Web-Application/assets/58486437/fd9256de-65f6-48e2-860f-82838651c24b) | ![forecast sales screen](https://github.com/snyamson/P4-SalesSense-Interactive-Sales-Forecasting-Web-Application/assets/58486437/c47bd94c-7b4e-43c0-8d66-973eb8943699) |
   | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
   | ![history](https://github.com/snyamson/P4-SalesSense-Interactive-Sales-Forecasting-Web-Application/assets/58486437/917e77f3-d7e9-4c6c-86ee-004f29819b15)        | ![trend](https://github.com/snyamson/P4-SalesSense-Interactive-Sales-Forecasting-Web-Application/assets/58486437/336c5ea5-5d7e-4cfe-8c7a-d2dd61c9f325)                 |
-- ### Live App Link 🌐
-  [Insert a link to a live demo of your app, if available.]
+- ### Article Link 🌐
+  [Read Article](https://www.linkedin.com/pulse/salessense-revolutionizing-sales-forecasting-machine-solomon-mgohf)
 
 ## Getting Started 🏁
 
