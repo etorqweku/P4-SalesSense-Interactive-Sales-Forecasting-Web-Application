@@ -2,29 +2,11 @@
 
 SalesSense is an intuitive web app powered by cutting-edge machine learning models that provides real-time sales forecasts, helping businesses optimize inventory, boost profits, and make data-driven decisions effortlessly 💼💰🤖
 
-## Table of Contents 📚
-
-- [Introduction](#introduction) 📝
-- [Features](#features) ✨
-- [Demo](#demo) 🚀
-- [Getting Started](#getting-started) 🏁
-  - [Installation](#installation) 🛠️
-  - [Running the App](#running-the-app) 🏃
-- [App Structure](#app-structure) 🧱
-- [Usage](#usage) 📊
-  - [Making Predictions](#making-predictions) 📈
-  - [Viewing Sales Trends](#viewing-sales-trends) 📉
-- [Technologies Used](#technologies-used) 💻🔬
-- [Data Preprocessing](#data-preprocessing) 🧹🧮
-- [Model Training](#model-training) 🤖📓
-- [Contributing](#contributing) 🤝🙌
-- [License](#license) 📜
-
-## Introduction 🚀
+## Introduction 
 
 The SalesSense app leverages machine learning models to provide real-time sales forecasts for businesses. It offers an intuitive and user-friendly interface to input relevant data and instantly receive sales predictions.
 
-## Features ✨
+## Features 
 
 - Real-time sales predictions.
 - Interactive user interface.
@@ -33,52 +15,8 @@ The SalesSense app leverages machine learning models to provide real-time sales 
 - Support for different product families.
 - Data preprocessing and model training.
 
-## Demo 🚀
 
-- ### Pictures 📸
-  | ![initial_screen](https://github.com/snyamson/P4-SalesSense-Interactive-Sales-Forecasting-Web-Application/assets/58486437/fd9256de-65f6-48e2-860f-82838651c24b) | ![forecast sales screen](https://github.com/snyamson/P4-SalesSense-Interactive-Sales-Forecasting-Web-Application/assets/58486437/c47bd94c-7b4e-43c0-8d66-973eb8943699) |
-  | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | ![history](https://github.com/snyamson/P4-SalesSense-Interactive-Sales-Forecasting-Web-Application/assets/58486437/917e77f3-d7e9-4c6c-86ee-004f29819b15)        | ![trend](https://github.com/snyamson/P4-SalesSense-Interactive-Sales-Forecasting-Web-Application/assets/58486437/336c5ea5-5d7e-4cfe-8c7a-d2dd61c9f325)                 |
-- ### Article Link 🌐
-  [Read Article](https://www.linkedin.com/pulse/salessense-revolutionizing-sales-forecasting-machine-solomon-mgohf)
-
-## Getting Started 🏁
-
-Follow these instructions to get the app up and running on your local machine.
-
-### Installation 🛠️
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/snyamson/P4-SalesSense-Interactive-Sales-Forecasting-Web-Application.git
-   cd SalesSense
-   ```
-
-2. Create a virtual environment (optional but recommended):
-
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-   ```
-
-3. Install the required dependencies:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-### Running the App 🏃
-
-Run the Streamlit app using the following command:
-
-```bash
-streamlit run src/app/app.py
-```
-
-Access the app through your web browser at `http://localhost:8501`.
-
-## App Structure 🧱
+## App Structure 
 
 - `src`: The main application directory.
 - `app/`: Directory containing app components, utility functions and the main application script `app.py`.
@@ -115,26 +53,7 @@ The app preprocesses input data to ensure compatibility with the machine learnin
 
 The app employs a pre-trained XGBoost machine learning model (Details about training can be found in the notebook). The model was trained on historical sales data to provide accurate forecasts.
 
-## Contributing 🤝🙌
-
-Contributions to the SalesSense app project are welcome. Please follow these guidelines for contributing:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix: `git checkout -b feature-name`
-3. Make your changes and commit them with clear, concise commit messages.
-4. Push your changes to your fork.
-5. Create a pull request against the main repository.
-
-## License📜
-
-This project is licensed under the [MIT License](LICENSE).
 
 ## Author✍️
 
-Solomon Nyamson
-
-Connect with me on LinkedIn: [LinkedIn Profile](https://www.linkedin.com/in/solomon-nyamson/)
-
----
-
-Feel free to star ⭐ this repository if you find it helpful!
+Aryee Kwaku Geoffrey
